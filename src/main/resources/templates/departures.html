@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Seznam odletů z [[${airport}]]</title>
+</head>
+<body>
+<h1>Odlety z ICAO [[${airport}]]</h1>
+<p>
+  Interval:
+  [[${#dates.format(new java.util.Date(from * 1000), 'dd.MM.yyyy HH:mm')}]]
+  –
+  [[${#dates.format(new java.util.Date(until * 1000), 'dd.MM.yyyy HH:mm')}]]
+</p>
+
+<table border="1">
+  <tr>
+    <th>ICAO24</th><th>Callsign</th><th>Letiště</th><th>První záznam</th><th>Poslední záznam</th>
+  </tr>
+  <tr th:each="d : ${flights}">
+    <td th:text="${d.icao24}">ICAO24</td>
+    <td th:text="${d.callsign}">Callsign</td>
+    <td th:text="${d.estDepartureAirport}">Airport</td>
+    <td th:text="${#dates.format(new java.util.Date(d.firstSeen * 1000), 'dd.MM.yyyy HH:mm')}"></td>
+    <td th:text="${#dates.format(new java.util.Date(d.lastSeen  * 1000), 'dd.MM.yyyy HH:mm')}"></td>
+
+  </tr>
+</table>
+<a href="/">← Klikněte zde pro navrácení ke vstupnímu formuláři</a>
+</body>
+</html>
