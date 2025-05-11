@@ -9,7 +9,7 @@
 <div class="container">
   <h1>Vyhledat odlety</h1>
 
-  <!-- Chybová hláška pokud uživatel zadal interval starší než 7 dní -->
+  <!-- Chybová hláška pokud uživatel zada neplatné údaje-->
   <div th:if="${errorMessage}" class="error-box" th:text="${errorMessage}"></div>
 
   <form action="/departures" method="post">
@@ -32,7 +32,7 @@
     <button type="submit">Hledej</button>
   </form>
 
-  <!-- Původní poznámka -->
+  <!-- Poznámka pod formulářem-->
   <div class="note">
     Berte na vědomí, že požadavek > 7 dní nebude proveden, protože tento request u neregistrovaných účtů na OpenSky neni povolen. Dále nebude povolen požadavek starší než 5 let.
 
